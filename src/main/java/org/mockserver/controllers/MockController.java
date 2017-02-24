@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.mockserver.dao.MockDAO;
 import org.mockserver.dao.models.Mock;
-import org.mockserver.models.MockRequest;
 import org.mockserver.models.MockResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -24,6 +24,11 @@ public class RestController {
 	@Autowired
 	private MockDAO mockDao;
 	
+	/**
+	 * get requests with single path
+	 * @param path1
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET, value="/{path1:.+}",
 			produces="application/json")
 	@ResponseBody
@@ -41,6 +46,12 @@ public class RestController {
 		
 	}
 	
+	/**
+	 * get requests with 2 paths
+	 * @param path1
+	 * @param path2
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET, value="/{path1:.+}/{path2:.+}",
 			produces="application/json")
 	@ResponseBody
@@ -59,6 +70,13 @@ public class RestController {
 		
 	}
 	
+	/**
+	 * get requests with three paths
+	 * @param path1
+	 * @param path2
+	 * @param path3
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET, value="/{path1:.+}/{path2:.+}/{path3:.+}",
 			produces="application/json")
 	@ResponseBody
