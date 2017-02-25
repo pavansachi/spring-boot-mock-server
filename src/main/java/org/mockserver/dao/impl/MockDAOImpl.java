@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.h2.fulltext.FullText;
 import org.mockserver.dao.MockDAO;
 import org.mockserver.dao.models.Mock;
 import org.mockserver.dao.repositories.MockRepository;
@@ -34,8 +33,6 @@ public class MockDAOImpl implements MockDAO {
 		mockRepository.save(mock);
 		log.info("mock is saved");
 		
-		System.out.println(mockRepository.count());
-		System.out.println();
 	}
 
 	@Override
