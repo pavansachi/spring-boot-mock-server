@@ -41,18 +41,4 @@ public class MockController {
 		return new ResponseEntity<MockResponse>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, path="/push", consumes={"application/json"})
-	@ResponseBody
-	public ResponseEntity<MockResponse> setOneMock(@RequestBody final Mock mock) {
-		
-		try {
-			mockDao.createMock(mock);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<MockResponse>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
-		return new ResponseEntity<MockResponse>(HttpStatus.OK);
-	}
-
 }

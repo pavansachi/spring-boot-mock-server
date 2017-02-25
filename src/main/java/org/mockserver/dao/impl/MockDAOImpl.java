@@ -36,6 +36,16 @@ public class MockDAOImpl implements MockDAO {
 	}
 
 	@Override
+	public Mock findByPath(String path) throws Exception {
+
+		Mock mock = mockRepository.findByPath(path);
+		
+		System.out.println(mock);
+		
+		return mock;
+	}
+	
+	@Override
 	public Mock findByPath(String... paths) throws Exception {
 
 		String fullPath = "";

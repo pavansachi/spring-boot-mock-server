@@ -6,6 +6,12 @@ import javax.persistence.IdClass;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * entity class to represent a mock object
+ * @author pavansachi
+ *
+ */
+
 @Entity
 @IdClass(MockKey.class)
 public class Mock {
@@ -16,22 +22,20 @@ public class Mock {
 	@JsonProperty
 	private String path;
 	
+	public String getResponseType() {
+		return responseType;
+	}
+
+	private String responseType;
+	
 	private String response;
 	
 	public String getResponse() {
 		return response;
 	}
 
-	public void setResponse(String response) {
-		this.response = response;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	@JsonProperty

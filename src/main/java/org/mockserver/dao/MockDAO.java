@@ -10,6 +10,8 @@ public interface MockDAO {
 
 	public void createMock(Mock mock) throws Exception;
 	
+	public Mock findByPath(String path) throws Exception;
+	
 	public Mock findByPath(String... path) throws Exception;
 	
 }
