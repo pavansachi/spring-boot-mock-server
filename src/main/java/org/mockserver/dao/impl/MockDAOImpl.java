@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mockserver.dao.MockDAO;
-import org.mockserver.dao.models.Mock;
+import org.mockserver.dao.models.MockRequest;
 import org.mockserver.dao.repositories.MockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ public class MockDAOImpl implements MockDAO {
 	private MockRepository mockRepository;
 
 	@Override
-	public void createMocks(List<Mock> mocks) throws Exception {
+	public void createMocks(List<MockRequest> mocks) throws Exception {
 
 		log.debug("createMocks(List(mocks))");
 		mockRepository.save(mocks);
@@ -27,7 +27,7 @@ public class MockDAOImpl implements MockDAO {
 	}
 
 	@Override
-	public void createMock(Mock mock) throws Exception {
+	public void createMock(MockRequest mock) throws Exception {
 		
 		log.info("createMocks(List(mocks))");
 		mockRepository.save(mock);
@@ -36,9 +36,9 @@ public class MockDAOImpl implements MockDAO {
 	}
 
 	@Override
-	public Mock findByPath(String path) throws Exception {
+	public MockRequest findByPath(String path) throws Exception {
 
-		Mock mock = mockRepository.findByPath(path);
+		MockRequest mock = mockRepository.findByPath(path);
 		
 		System.out.println(mock);
 		
@@ -46,7 +46,7 @@ public class MockDAOImpl implements MockDAO {
 	}
 	
 	@Override
-	public Mock findByPath(String... paths) throws Exception {
+	public MockRequest findByPath(String... paths) throws Exception {
 
 		String fullPath = "";
 		
@@ -60,7 +60,7 @@ public class MockDAOImpl implements MockDAO {
 		}
 		
 		
-		Mock mock = mockRepository.findByPath(fullPath);
+		MockRequest mock = mockRepository.findByPath(fullPath);
 		
 		System.out.println(mock);
 		

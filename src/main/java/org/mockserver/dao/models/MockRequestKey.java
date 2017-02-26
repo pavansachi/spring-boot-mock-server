@@ -5,16 +5,16 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class MockKey implements Serializable {
+public class MockRequestKey implements Serializable {
 	
 	private String method;
 	private String path;
 
-	public MockKey() {
+	public MockRequestKey() {
 		
 	}
 	
-	public MockKey(String primaryKey, String secondaryKey) {
+	public MockRequestKey(String primaryKey, String secondaryKey) {
 		super();
 		this.method = primaryKey;
 		this.path = secondaryKey;
@@ -53,7 +53,7 @@ public class MockKey implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MockKey other = (MockKey) obj;
+		MockRequestKey other = (MockRequestKey) obj;
 		if (method == null) {
 			if (other.method != null)
 				return false;

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mockserver.dao.MockDAO;
-import org.mockserver.dao.models.Mock;
+import org.mockserver.dao.models.MockRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,7 +45,7 @@ public class RestController {
 			
 			String appUrl = fullUrl.replace("/rest","");
 			
-			Mock mock = mockDao.findByPath(appUrl);
+			MockRequest mock = mockDao.findByPath(appUrl);
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.valueOf(mock.getResponseType()));

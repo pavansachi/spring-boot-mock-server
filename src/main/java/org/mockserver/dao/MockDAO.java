@@ -2,16 +2,16 @@ package org.mockserver.dao;
 
 import java.util.List;
 
-import org.mockserver.dao.models.Mock;
+import org.mockserver.dao.models.MockRequest;
 
 public interface MockDAO {
 
-	public void createMocks(List<Mock> mocks) throws Exception;
+	public void createMocks(List<MockRequest> mocks) throws Exception;
 
-	public void createMock(Mock mock) throws Exception;
+	public void createMock(MockRequest mock) throws Exception;
 	
-	public Mock findByPath(String path) throws Exception;
+	public MockRequest findByPath(String path) throws Exception;
 	
-	public Mock findByPath(String... path) throws Exception;
+	public MockRequest findByPath(String... path) throws Exception;
 	
 }

@@ -3,7 +3,7 @@ package org.mockserver.controllers;
 import java.util.List;
 
 import org.mockserver.dao.MockDAO;
-import org.mockserver.dao.models.Mock;
+import org.mockserver.dao.models.MockRequest;
 import org.mockserver.models.MockResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class MockController {
 	
 	@RequestMapping(method=RequestMethod.PUT, path="/push/all", consumes={"application/json"})
 	@ResponseBody
-	public ResponseEntity<MockResponse> setMocks(@RequestBody final List<Mock> mocks) {
+	public ResponseEntity<MockResponse> setMocks(@RequestBody final List<MockRequest> mocks) {
 		
 		try {
 			mockDao.createMocks(mocks);

@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 @Entity
-@IdClass(MockKey.class)
-public class Mock {
+@IdClass(MockRequestKey.class)
+public class MockRequest {
 
 	@Id
 	@JsonProperty
@@ -41,7 +41,7 @@ public class Mock {
 	@JsonProperty
 	private String description;
 
-	private Mock() {
+	private MockRequest() {
 
 	}
 
