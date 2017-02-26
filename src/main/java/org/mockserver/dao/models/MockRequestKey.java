@@ -2,9 +2,6 @@ package org.mockserver.dao.models;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
 public class MockRequestKey implements Serializable {
 	
 	private String method;

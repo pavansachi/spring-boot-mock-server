@@ -19,6 +19,8 @@ public class MockRequest {
 	@Id
 	@JsonProperty
 	private String method;
+	
+	@Id
 	@JsonProperty
 	private String path;
 	

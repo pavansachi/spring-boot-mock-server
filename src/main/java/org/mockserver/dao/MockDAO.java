@@ -12,6 +12,6 @@ public interface MockDAO {
 	
 	public MockRequest findByPath(String path) throws Exception;
 	
-	public MockRequest findByPath(String... path) throws Exception;
+//	public MockRequest findByPath(String... path) throws Exception;
 	
 }
