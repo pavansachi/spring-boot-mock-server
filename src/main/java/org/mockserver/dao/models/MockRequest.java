@@ -1,8 +1,12 @@
 package org.mockserver.dao.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,6 +28,17 @@ public class MockRequest {
 	@JsonProperty
 	private String path;
 	
+	@Transient
+	private List<MockRequestParam> params = new ArrayList<MockRequestParam>();
+	
+	public List<MockRequestParam> getParams() {
+		return params;
+	}
+
+	public void setParams(List<MockRequestParam> params) {
+		this.params = params;
+	}
+
 	public String getResponseType() {
 		return responseType;
 	}
@@ -45,6 +60,14 @@ public class MockRequest {
 
 	private MockRequest() {
 
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }

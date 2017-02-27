@@ -1,5 +1,8 @@
 package org.mockserver.controllers;
 
+import java.util.Enumeration;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,14 +48,51 @@ public class RestController {
 			
 			String appUrl = fullUrl.replace("/rest","");
 			
+			Enumeration<String> parameters = request.getParameterNames();
+			
+			int length = 0;
+			
+			int i=0;
+			
+			while (parameters.hasMoreElements()) {
+				
+				length++;
+				parameters.nextElement();
+			}
+			
+			if (length > 0) {
+				appUrl+= "?";
+			}
+			
+			parameters = request.getParameterNames();
+			
+			while (parameters.hasMoreElements()) {
+				
+				String param = parameters.nextElement();
+				
+				String value = request.getParameter(param);
+				
+				appUrl+= param + "=" + value;
+				
+				if (i != length - 1) {
+					appUrl+= "&";
+				}
+					
+				i++;
+			}
+			
 			MockRequest mock = mockDao.findByPath(appUrl);
 
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.valueOf(mock.getResponseType()));
-			response.setContentType(mock.getResponseType());
-
-			return new ResponseEntity<String>(mock.getResponse(), headers, HttpStatus.OK);
-
+			if (mock == null) {
+				return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+			}
+			else {
+				HttpHeaders headers = new HttpHeaders();
+				headers.setContentType(MediaType.valueOf(mock.getResponseType()));
+				response.setContentType(mock.getResponseType());
+				return new ResponseEntity<String>(mock.getResponse(), headers, HttpStatus.OK);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
