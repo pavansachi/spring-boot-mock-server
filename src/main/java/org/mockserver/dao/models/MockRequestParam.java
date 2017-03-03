@@ -46,8 +46,7 @@ public class MockRequestParam {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumns({
 		@JoinColumn(name="method"),
-		@JoinColumn(name="path"),
-		@JoinColumn(name="requestName")
+		@JoinColumn(name="path")
 		})
 	private MockRequest mockRequest;
 
