@@ -1,13 +1,13 @@
 package org.mockserver.dao.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -23,6 +23,24 @@ public class MockRequestParam {
 	@GeneratedValue
 	private int paramId;
 	
+//	private int paramId;
+	
+	public int getId() {
+		return paramId;
+	}
+
+	public void setId(int id) {
+		this.paramId = id;
+	}
+
+//	public int getParamId() {
+//		return paramId;
+//	}
+//
+//	public void setParamId(int paramId) {
+//		this.paramId = paramId;
+//	}
+
 	@JsonProperty
 	private String name;
 	
@@ -43,11 +61,14 @@ public class MockRequestParam {
 //	        @PrimaryKeyJoinColumn(name="path")
 //	    })
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumns({
-		@JoinColumn(name="method"),
-		@JoinColumn(name="path")
-		})
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	@JsonBackReference
+//	@JoinColumn(name="requestId")
+//	@JoinColumns({
+//		@JoinColumn(name="method"),
+//		@JoinColumn(name="path")
+//		})
 	private MockRequest mockRequest;
 
 	public String getName() {

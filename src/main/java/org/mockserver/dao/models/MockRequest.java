@@ -3,12 +3,13 @@ package org.mockserver.dao.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * entity class to represent a mock object
@@ -17,49 +18,53 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 @Entity
-@IdClass(MockRequestKey.class)
 public class MockRequest {
 
 	@Id
-	@JsonProperty
+	@GeneratedValue
+	private int requestId;
+
 	private String method;
-	
-	@Id
-	@JsonProperty
+
 	private String path;
-	
-	@Transient
-	private List<MockRequestParam> params = new ArrayList<MockRequestParam>();
-	
-	public List<MockRequestParam> getParams() {
-		return params;
-	}
-
-	public void setParams(List<MockRequestParam> params) {
-		this.params = params;
-	}
-
-	public String getResponseType() {
-		return responseType;
-	}
 
 	private String responseType;
-	
+
 	private String response;
-	
-	public String getResponse() {
-		return response;
-	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	@JsonProperty
 	private String description;
+	
+	@OneToMany(mappedBy="mockRequest", cascade=CascadeType.ALL)
+	@JsonManagedReference
+	private List<MockRequestParam> paramList = null;
+	
+	public MockRequest() {
 
-	private MockRequest() {
+		paramList = new ArrayList<>();
+	}
 
+	public List<MockRequestParam> getParamList() {
+		return paramList;
+	}
+
+	public void setParamList(List<MockRequestParam> paramList) {
+		this.paramList = paramList;
+	}
+
+	public int getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(int requestId) {
+		this.requestId = requestId;
+	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
 	}
 
 	public String getPath() {
@@ -68,6 +73,30 @@ public class MockRequest {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public String getResponseType() {
+		return responseType;
+	}
+
+	public void setResponseType(String responseType) {
+		this.responseType = responseType;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
